@@ -6,7 +6,7 @@ import { useUserStore } from "@/stores/modules/user";
 const request = axios.create({
   // 后端接口地址
   baseURL: import.meta.env.VITE_API_URL || "/api", // 注意！！这里是全局统一加上了 '/api' 前缀
-  timeout: 5000 // 请求超时时间
+  timeout: 60000 // 免费演示实例刚启动时，允许业务查询等待连接池预热
 });
 
 /**
