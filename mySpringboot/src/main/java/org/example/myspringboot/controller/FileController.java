@@ -12,10 +12,13 @@ import java.util.*;
 @RestController
 @RequestMapping("/file")
 public class FileController {
+    @Value("${app.upload-enabled:true}")
+    private boolean uploadEnabled = true;
     private final Path root;
     public FileController(@Value("${app.upload-dir}") String dir) { root = Paths.get(dir).toAbsolutePath().normalize(); }
     @PostMapping("/upload")
     public Result upload(@RequestParam("file") MultipartFile file) throws IOException {
+        if (!uploadEnabled) throw new ServiceException("403", "免费演示环境不支持持久文件上传");
         String name = Optional.ofNullable(file.getOriginalFilename()).orElse("");
         String ext = name.substring(name.lastIndexOf('.') + 1).toLowerCase(Locale.ROOT);
         if (file.isEmpty() || file.getSize() > 5 * 1024 * 1024 || !Arrays.asList("png", "jpg", "jpeg").contains(ext))

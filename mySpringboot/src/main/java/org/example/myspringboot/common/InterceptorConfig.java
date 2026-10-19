@@ -20,7 +20,7 @@ public class InterceptorConfig extends WebMvcConfigurationSupport {
          //InterceptorRegistry  注册拦截器类
         registry.addInterceptor(jwtInterceptor())  //表示将以下配置放入这个自定义jwt拦截器中（JwtInterceptor类）
                 .addPathPatterns("/**")     //表示拦截所有路径
-                .excludePathPatterns("/user/login");   //允许登录接口发送请求，未登录没有token
+                .excludePathPatterns("/user/login", "/health");   //允许登录接口发送请求，未登录没有token
 
         super.addInterceptors(registry);
     }

@@ -84,10 +84,9 @@ public class InventInquiryController {
             } else {
                 queryWrapper.orderByDesc("INVENTORY"); // 倒序
             }
-            long totalNum = mediStockInfo.count(queryWrapper);
             JSONObject result = new JSONObject();
-            result.put("resultCount", totalNum);   //总条数
             IPage<MediStockInfo> queryInfos = mediStockInfo.page(new Page<>(pageIndex, pageSize), queryWrapper);
+            result.put("resultCount", queryInfos.getTotal());
             result.put("DefineStockBillStockQueryInfo", queryInfos.getRecords());
             return Result.success(result);
         }

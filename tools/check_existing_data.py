@@ -1,5 +1,5 @@
-import json,pathlib,urllib.request,urllib.error
-root=pathlib.Path(__file__).resolve().parents[1];cfg=json.loads((root/"private/local-config.json").read_text());base="http://127.0.0.1:4173/api/"
+import json,pathlib,urllib.request,urllib.error,os
+root=pathlib.Path(__file__).resolve().parents[1];cfg=json.loads((root/"private/local-config.json").read_text());base=os.environ.get("DEMO_API_URL", "http://127.0.0.1:4173/api/")
 def request(path,data=None,token=""):
  req=urllib.request.Request(base+path,None if data is None else json.dumps(data).encode(),{"Content-Type":"application/json","Token":token})
  try:response=urllib.request.urlopen(req,timeout=20)

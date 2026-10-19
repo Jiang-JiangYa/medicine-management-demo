@@ -1,0 +1,17 @@
+.git
+private
+**/node_modules
+**/target
+**/dist
+**/.git
+**/.idea
+**/*.7z
+**/*.log
+**/*.local.*
+**/.env.local
+**/.env.*.local
+docs
+
+deploy/app.env
+**/*.key
+**/*.pfx
