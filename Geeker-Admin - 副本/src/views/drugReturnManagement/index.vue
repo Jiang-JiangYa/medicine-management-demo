@@ -10,14 +10,14 @@ import {
   getwasterRefundingBillMaster
 } from "@/api/drugAdministration/drugReturnManagement";
 import { getDrugInfoByCode } from "@/api/drugAdministration/drugStorageManagement";
-import { checkDate, getNowTimeInterval, isEndTimeMidnight } from "@/utils/drugAdministration";
+import { checkDate, getDefaultQueryDates, isEndTimeMidnight } from "@/utils/drugAdministration";
 import { exportDrugExpiryTable } from "@/utils/drugAdministration/excel";
 import { formatDate } from "@/utils/drugAdministration/index";
 import { throttle } from "echarts";
 import { ElMessage, ElMessageBox, ElTable, FormInstance, FormRules } from "element-plus";
-import { nextTick, reactive, ref } from "vue";
+import { nextTick, onMounted, reactive, ref } from "vue";
 
-const dateList = ref<[Date, Date]>(getNowTimeInterval());
+const dateList = ref<[string, string]>(getDefaultQueryDates());
 //提示信息
 const tableLoading = ref(false);
 const tableLoadingRight = ref(false);
@@ -966,6 +966,9 @@ const newReverseRefundingBill = () => {
     ElMessage({ message: "请选择需要冲销的数据!", type: "error" });
   }
 };
+onMounted(() => {
+  RefundingBillMasterList();
+});
 </script>
 <template>
   <div id="main" tabindex="0">

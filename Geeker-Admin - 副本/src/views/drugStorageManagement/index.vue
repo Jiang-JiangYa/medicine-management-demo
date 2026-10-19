@@ -8,13 +8,13 @@ import {
   getwasterInStoreBill,
   getwasterInStoreBillDetail
 } from "@/api/drugAdministration/drugStorageManagement";
-import { checkDate, getNowTimeInterval, isEndTimeMidnight } from "@/utils/drugAdministration";
+import { checkDate, getDefaultQueryDates, isEndTimeMidnight } from "@/utils/drugAdministration";
 import { exportDrugExpiryTable } from "@/utils/drugAdministration/excel";
 import { throttle } from "echarts";
 import { dayjs, ElMessage, ElMessageBox, ElTable, FormInstance, FormRules } from "element-plus";
 import { nextTick, onMounted, reactive, ref } from "vue";
 const labelWidth = ref("80px"); //页面样式
-const dateList = ref<[Date, Date]>(getNowTimeInterval());
+const dateList = ref<[string, string]>(getDefaultQueryDates());
 const TableForm: any = ref<FormInstance>(); //右侧表格-表单REF
 const isdy = ref(true); //控制能否打印，true不能打印
 const isAdd = ref(true); //能否点击新增入库单(能：false，不能：true)

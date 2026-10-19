@@ -4,12 +4,12 @@ import {
   storeBatchInfoListWithPageFilter,
   updateStoreBatchInfo
 } from "@/api/drugAdministration/drugExpirationDate";
-import { checkDate, getNowTimeInterval, isEndTimeMidnight } from "@/utils/drugAdministration";
+import { checkDate, getDefaultQueryDates, isEndTimeMidnight } from "@/utils/drugAdministration";
 import { exportDrugExpiryTable } from "@/utils/drugAdministration/excel";
 import { ElMessage, FormInstance, FormRules } from "element-plus";
 import { nextTick, onMounted, reactive, ref } from "vue";
 import dayjs from "dayjs";
-const dateList = ref<[Date, Date]>(getNowTimeInterval());
+const dateList = ref<[string, string]>(getDefaultQueryDates());
 /**表单数据 */
 const formData = reactive({
   orgaId: "0521",
@@ -298,13 +298,6 @@ const getUpdateDrugAndStoreBatchInfo = async () => {
     });
 };
 onMounted(async () => {
-  //页面初始化时，将endDate设为三年后
-  // if (dateList.value && dateList.value[1]) {
-  //   const originalEndDate = dateList.value[1];
-  //   const newEndDate = new Date(originalEndDate);
-  //   newEndDate.setFullYear(newEndDate.getFullYear() + 3); // 年份加三年
-  //   formData.endDate = newEndDate;
-  // }
   getSearch(1);
 });
 </script>

@@ -4,17 +4,18 @@ import {
   getOutStoreBillInfoWithPageFilter
 } from "@/api/drugAdministration/inwardoutboundquery";
 import { exportDrugExpiryTable, exportTwoExpiryTable } from "@/utils/drugAdministration/excel";
+import { getDefaultQueryDates } from "@/utils/drugAdministration";
 import { throttle } from "echarts";
 import { ElMessage, ElTable } from "element-plus";
-import { computed, nextTick, reactive, ref, watch } from "vue";
+import { computed, nextTick, onMounted, reactive, ref, watch } from "vue";
 
-const dateList = ref([]);
+const dateList = getDefaultQueryDates();
 
 //查询条件
 const searchForm: any = reactive({
   isInoutCheck: "按入库", //判断是按入库还是出库 默认入库
-  startDate: dateList?.value[0], //开始时间
-  endDate: dateList?.value[1], //结束时间
+  startDate: dateList[0] + " 00:00:00", //开始时间
+  endDate: dateList[1] + " 23:59:59", //结束时间
   supplyName: "", //供货商信息
   drugname: "", //药品信息
   drugclass: "", //药品分类
@@ -29,7 +30,7 @@ const currentPage: any = ref(1); // 当前页码
 const pageSize: any = ref(10); // 分页条数
 const total: any = ref(0); // 表格总条数
 const tableLoading = ref(false); //表格是否显示加载状态
-const isrk = ref(false); //按入库判断显示隐藏  //是入库
+const isrk = ref(true); //按入库判断显示隐藏  //是入库
 const isck = ref(false); //按出库判断显示隐藏   //是出库
 const deptName = ref(""); //出库相对部门名称
 const outdeptnameList = ref([
@@ -42,7 +43,7 @@ const outdeptnameList = ref([
 
 /** 选中按入库/出库 组件的变化(隐藏与显示) */
 watch(
-  () => searchForm.value.isInoutCheck,
+  () => searchForm.isInoutCheck,
   newVal => {
     if (newVal === "按入库") {
       isrk.value = true;
@@ -58,7 +59,7 @@ watch(
 
 // 可选：计算属性返回状态
 const isfocusrk = computed(() => {
-  return searchForm.value.isInoutCheck === "按入库";
+  return searchForm.isInoutCheck === "按入库";
 });
 /** 日期选择器改变时 */
 const changeDate = () => {
@@ -354,6 +355,9 @@ const changeType = () => {
   selectBtn();
   // console.log(searchForm.dateType, "切换日期类型");
 };
+onMounted(() => {
+  selectBtn();
+});
 </script>
 
 <template>

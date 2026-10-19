@@ -1,6 +1,11 @@
 import dayjs from "dayjs";
 import { ref } from "vue";
 
+/** 每次创建查询页面时，默认覆盖原毕设数据至浏览器本地当天。 */
+export function getDefaultQueryDates(): [string, string] {
+  return ["2021-01-01", dayjs().format("YYYY-MM-DD")];
+}
+
 export function isEndTimeMidnight(endTime: any) {
   // 判断结束时间是否为日期+00:00:00，如果是，则将其调整为日期+23:59:59
   if (endTime.endsWith(" 00:00:00")) {

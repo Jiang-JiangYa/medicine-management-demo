@@ -8,17 +8,18 @@ import {
   saveOutStoreBill,
   wasterOutStoreBill
 } from "@/api/drugAdministration/outOfWarehouse";
-import { checkDate, isEndTimeMidnight } from "@/utils/drugAdministration";
+import { checkDate, getDefaultQueryDates, isEndTimeMidnight } from "@/utils/drugAdministration";
 import { exportDrugExpiryTable } from "@/utils/drugAdministration/excel";
 import { throttle } from "echarts";
 import { dayjs, ElMessage, ElMessageBox, ElTable, FormInstance, FormRules } from "element-plus";
 import { tr } from "element-plus/es/locale";
-import { nextTick, reactive, ref } from "vue";
+import { nextTick, onMounted, reactive, ref } from "vue";
+const dateList = getDefaultQueryDates();
 /** 搜索表单  */
 const formData = reactive({
   dateType: "1", //日期类型(录单日期/审核日期)
-  startDate: "", //日期-开始时间
-  endDate: "", //日期-结束时间
+  startDate: dateList[0] + " 00:00:00", //日期-开始时间
+  endDate: dateList[1] + " 23:59:59", //日期-结束时间
   executor: "", //审核人
   executorName: "", //审核人名称yang
   status: false //是/否 （未审核的按钮 是否勾选）
@@ -986,6 +987,9 @@ function Xml() {
   //标题不要超过30个字符，否则报错
   exportDrugExpiryTable(headersArr, data, "浦东测试机构西药库" + "出库单" + currentRowMain.value.billNo + "信息");
 }
+onMounted(() => {
+  getMainList();
+});
 </script>
 <template>
   <div id="main" tabindex="0">
