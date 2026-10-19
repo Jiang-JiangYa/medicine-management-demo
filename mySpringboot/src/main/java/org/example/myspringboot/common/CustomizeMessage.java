@@ -1,0 +1,64 @@
+package org.example.myspringboot.common;
+
+public interface CustomizeMessage {
+
+    String SUCCESS = "成功";
+    String FAIL = "失败";
+    String REDIS_ERROR = "Redis异常";
+    String LOGIN_FAIL = "用户名或密码不正确";
+    String ACCOUNT_DISABLED = "用户名被禁用";
+    String ACCOUNT_LOCKED = "用户被锁定, {}分钟后自动解锁";
+    String INVALID_TOKEN = "token无效";
+    String TOKEN_TIMEOUT = "token已过期";
+    String BE_REPLACED = "用户被顶下线";
+    String KICK_OUT = "用户被踢下线";
+    String NOT_LOGIN = "当前会话未登录";
+    String NO_TOKEN = "未提供token";
+    String NO_ROLE = "无此角色";
+    String NO_PERMISSION = "无此权限";
+    String DATA_NOT_FOUND = "未查询到相关数据";
+    String MISSING_PARAMETER = "参数缺失";
+    String ILLEGAL_PARAMETER = "参数值非法";
+    String MAJOR_PARAMETERS_ARE_NOT_CONFIGURED = "重要参数未配置";
+    String ALERADY_CONSULTATION = "已被其他医生接诊";
+    String ALERADY_EXIST_CONSULT = "此患者今日在本科室已存在就诊记录";
+    String PATIENTINFO_NOT_EXIST = "患者信息不存在";
+    String OLD_PASSWORD_WRONG = "原密码错误";
+    String DRUGSTORE_REPEAT = "当前机构下药房重复";
+    String DATA_ALREADY_UPLOAD = "该药品已经上传平台，不能退费";
+    String REFUND_ALREADY_OPERATE = "当前退费信息已被操作过，请重新查询后重试！";
+    String PROJECT_EXECUTED_REFUND = "项目已经执行不能执行退费操作！";
+    String RETURN_QUANTITY_MISTAKE = "数量错误！";
+    String REFUND_STOP_TRY_AGAIN = "已经停用，不可退费，请重新启用后操作！";
+    String DISTRICT_ABSENCE_UNABLE = "当前病人非在区状态，无法补记账！";
+    String QUANTITY_NOT_DECIMAL = "数量不可输入小数！";
+    String CONFIGURATION_ERROR = "配置有误";
+    String LABORATORY_REPEAT = "存在相同的站点名称";
+    String BACK_MEDICAL_ORDERS_ERROR = "医嘱回退失败";
+    String CIS_INIT_FAIL = "初始化异常，请联系管理员";
+    String DEPT_RESOURCE_DEFAULT = "该科室已存在通用数据,无法保存";
+    String USER_DEPT_MERGE_DELETE = "合并科室删除";
+    String RECIPE_IN_CHARGE = "当前处方正在收费中，不可操作!";
+    String AND_ALSO_UNCHECKED_EXPENSES = "还有未结算的费用，请处理！";
+    String AND_ALSO_UNCHECKED_PROJECT = "还有未结算的项目，请处理！";
+    String DATA_REPEAT = "数据已存在";
+    String INTERFACE_EXCEPTION = "调用接口异常";
+    String USER_NOT_NULL = "用户信息不能为空";
+    String ITEM_REPEAT = "项目代码或名称已存在";
+    String PARAM_IS_NULL = "必填参数不能为空";
+    String NO_AVAILABLE_ORG = "未查询到有效的机构信息，请检查机构代码是否有误";
+    String APPOINT_FULL = "该时段已约满，请刷新后重试";
+    String APPOINT_UNRECOVERED = "该患者存在未履约的医技项目无法继续预约";
+    String PRESCRIPTION_REVIEW_FAILED = "处方审核不通过";
+    String PRE_SCRIPTING_INTERFACE_CALL_EXCEPTION = "调用前置审方接口异常";
+    String DRUG_OR_ITEM_IS_NOT_FOUND = "药品或项目编码不存在";
+    String STARTDATE_LT_NOW = "开始日期不能小于当前日期";
+    String STARTDATE_GT_ENDDATE = "结束日期不能小于开始日期";
+    String ORG_INVALID = "未查询到此机构信息";
+    String REG_APPOINT_UNRECOVERED = "该患者已预约，不可重复预约";
+    String NOT_DATA_LOGIN = "未查询到该用户扫码登录,请重试!";
+    String ORG_UNREGISTER = "机构信息未注册";
+    String DEPT_UNREGISTER = "科室信息未注册";
+    String DOCTOR_UNREGISTER = "医生信息未注册";
+
+}

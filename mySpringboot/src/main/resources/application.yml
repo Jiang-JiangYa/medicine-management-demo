@@ -1,0 +1,21 @@
+server:
+  address: ${SERVER_ADDRESS:127.0.0.1}
+  forward-headers-strategy: framework
+  port: ${SERVER_PORT:8081}
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+  datasource:
+    driver-class-name: dm.jdbc.driver.DmDriver
+    url: ${DB_URL:jdbc:dm://127.0.0.1:5236}
+    username: ${DB_USERNAME:DEMO_APP}
+    password: ${DB_PASSWORD}
+app:
+  jwt-secret: ${JWT_SECRET}
+  upload-dir: ${UPLOAD_DIR:./data/uploads}
+  seed-demo: ${SEED_DEMO:false}
+  seed-confirm: ${SEED_CONFIRM:}
+  demo-admin-password: ${DEMO_ADMIN_PASSWORD:}
+  demo-user-password: ${DEMO_USER_PASSWORD:}

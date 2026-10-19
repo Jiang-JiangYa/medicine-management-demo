@@ -1,0 +1,11 @@
+node_modules
+
+dist/
+*.7z
+*.log
+*.local.*
+.cache/
+vite.config.ts.timestamp-*
+
+.env.local
+.env.*.local

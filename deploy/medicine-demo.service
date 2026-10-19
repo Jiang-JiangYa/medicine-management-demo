@@ -1,0 +1,22 @@
+[Unit]
+Description=Medicine graduation demo API
+After=network.target
+
+[Service]
+Type=simple
+User=medicine-demo
+Group=medicine-demo
+WorkingDirectory=/opt/medicine-demo
+EnvironmentFile=/etc/medicine-demo/app.env
+ExecStart=/usr/bin/java -Xms128m -Xmx512m -jar /opt/medicine-demo/app.jar
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/medicine-demo
+
+[Install]
+WantedBy=multi-user.target
